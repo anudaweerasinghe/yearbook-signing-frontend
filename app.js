@@ -1,11 +1,13 @@
 var yearbookSignApp = angular.module('yearbookSignApp', ['ui.router', 'ngCookies']);
 
-var baseTomcatUrl = "http://142.93.212.170:8080/autographs/";
-var baseUrl = "http://127.0.0.1/";
+// var baseTomcatUrl = "http://142.93.212.170:8080/autographs/";
+var baseTomcatUrl = "http://127.0.0.1:8080/";
+
+var baseUrl = "http://anuda.me/yearbook/";
 
 yearbookSignApp.config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/home');
 
     $stateProvider
 
@@ -331,14 +333,14 @@ yearbookSignApp.controller('forgotController', function ($scope, $http, $cookies
         }).then(function successCallback(response) {
             $cookies.put("email", $scope.email);
             $cookies.put("password", $scope.password);
-            alert("Sign Up Complete!");
+            alert("Password Reset Successfully!");
 
             $state.go('home');
 
 
         }, function errorCallback(response) {
             // The next bit of code is asynchronously tricky.
-            alert("Sign Up Failed, Please try again");
+            alert("Password Reset Failed, Please try again");
             console.log(response)
 
         });

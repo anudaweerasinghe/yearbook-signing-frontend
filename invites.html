@@ -245,7 +245,7 @@
 
 
                                 <select ng-model="recipient" style="width: 100%; font-size: 16pt; background: white;">
-                                    <option ng-repeat="things in users| orderBy: reverse:true" value="{{things.id}}">{{things.name}}</option>
+                                    <option ng-repeat="things in users| orderBy: 'name'" value="{{things.id}}">{{things.name}}</option>
 
                                 </select>
                                 <br><br>

@@ -67,28 +67,12 @@
                     <input class="form-control" placeholder="Pin Sent to your E-Mail" type="number" ng-model="$parent.otp">
                   </div>
                 </div>
-                <div class="form-group mb-3" ng-if="otpSent">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="First Name" type="text" ng-model="$parent.firstName">
-                  </div>
-                </div>
-                <div class="form-group mb-3" ng-if="otpSent">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Last Name" type="text" ng-model="$parent.lastName">
-                  </div>
-                </div>
                 <div class="form-group" ng-if="otpSent">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password" ng-model="$parent.password">
+                    <input class="form-control" placeholder="New Password" type="password" ng-model="$parent.password">
                   </div>
                 </div>
 
