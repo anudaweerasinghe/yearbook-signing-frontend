@@ -1,6 +1,6 @@
 var yearbookSignApp = angular.module('yearbookSignApp', ['ui.router', 'ngCookies']);
 
-var baseTomcatUrl = "http://127.0.0.1:8080/";
+var baseTomcatUrl = "http://142.93.212.170:8080/autographs/";
 var baseUrl = "http://127.0.0.1/";
 
 yearbookSignApp.config(function ($stateProvider, $urlRouterProvider) {
@@ -282,25 +282,35 @@ yearbookSignApp.controller('forgotController', function ($scope, $http, $cookies
 
     $scope.continue = function () {
 
-        if($scope.otpSent){
-            alert("OTP Resent.");
-        }else{
-            $scope.otpSent = true;
+        var res = $scope.email.split("@");
+
+        if(res[1]!="osc.lk"){
+
+
+            alert("Please use your OSC.lk email address");
+
+        }else {
+
+            if ($scope.otpSent) {
+                alert("OTP Resent.");
+            } else {
+                $scope.otpSent = true;
+            }
+
+            $http({
+                method: 'GET',
+                url: baseTomcatUrl + 'users/OTP?email=' + $scope.email
+            }).then(function successCallback(response) {
+                $scope.sessionId = response.data;
+
+
+            }, function errorCallback(response) {
+                // The next bit of code is asynchronously tricky.
+                alert("We encountered an error while verifying your email. Please reload and try again");
+                console.log(response)
+
+            });
         }
-
-        $http({
-            method: 'GET',
-            url: baseTomcatUrl+'users/OTP?email=' + $scope.email
-        }).then(function successCallback(response) {
-            $scope.sessionId = response.data;
-
-
-        }, function errorCallback(response) {
-            // The next bit of code is asynchronously tricky.
-            alert("We encountered an error while verifying your email. Please reload and try again");
-            console.log(response)
-
-        });
 
     };
 
@@ -347,25 +357,35 @@ yearbookSignApp.controller('signUpController', function ($scope, $http, $cookies
 
     $scope.continue = function () {
 
-        if($scope.otpSent){
-            alert("OTP Resent.");
-        }else{
-            $scope.otpSent = true;
+        var res = $scope.email.split("@");
+
+        if(res[1]!="osc.lk"){
+
+
+            alert("Please use your OSC.lk email address");
+
+        }else {
+
+            if ($scope.otpSent) {
+                alert("OTP Resent.");
+            } else {
+                $scope.otpSent = true;
+            }
+
+            $http({
+                method: 'GET',
+                url: baseTomcatUrl + 'users/OTP?email=' + $scope.email
+            }).then(function successCallback(response) {
+                $scope.sessionId = response.data;
+
+
+            }, function errorCallback(response) {
+                // The next bit of code is asynchronously tricky.
+                alert("We encountered an error while verifying your email. Please reload and try again");
+                console.log(response)
+
+            });
         }
-
-        $http({
-            method: 'GET',
-            url: baseTomcatUrl+'users/OTP?email=' + $scope.email
-        }).then(function successCallback(response) {
-            $scope.sessionId = response.data;
-
-
-        }, function errorCallback(response) {
-            // The next bit of code is asynchronously tricky.
-            alert("We encountered an error while verifying your email. Please reload and try again");
-            console.log(response)
-
-        });
 
     };
 
