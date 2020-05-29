@@ -1,9 +1,9 @@
 var yearbookSignApp = angular.module('yearbookSignApp', ['ui.router', 'ngCookies']);
 
-// var baseTomcatUrl = "http://142.93.212.170:8080/autographs/";
-var baseTomcatUrl = "http://127.0.0.1:8080/";
+var baseTomcatUrl = "http://142.93.212.170:8080/autographs/";
+// var baseTomcatUrl = "http://127.0.0.1:8080/";
 
-var baseUrl = "http://127.0.0.1/yearbook-autographs/";
+var baseUrl = "http://yearbook.osc.lk/";
 
 yearbookSignApp.config(function ($stateProvider, $urlRouterProvider) {
 
