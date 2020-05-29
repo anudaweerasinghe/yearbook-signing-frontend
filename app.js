@@ -3,7 +3,7 @@ var yearbookSignApp = angular.module('yearbookSignApp', ['ui.router', 'ngCookies
 // var baseTomcatUrl = "http://142.93.212.170:8080/autographs/";
 var baseTomcatUrl = "http://127.0.0.1:8080/";
 
-var baseUrl = "http://anuda.me/yearbook/";
+var baseUrl = "http://127.0.0.1/yearbook-autographs/";
 
 yearbookSignApp.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -41,6 +41,14 @@ yearbookSignApp.config(function ($stateProvider, $urlRouterProvider) {
             url: '/autographs',
             templateUrl: 'autographs.html',
             controller: 'autographsController',
+            resolve: {authenticate: authenticate}
+
+        })
+
+        .state('page', {
+            url: '/page',
+            templateUrl: 'pdf.html',
+            controller: 'pageController',
             resolve: {authenticate: authenticate}
 
         })
@@ -115,7 +123,55 @@ yearbookSignApp.controller('autographsController', function ($scope, $http, $coo
         $state.go('login')
 
     };
+
+    $scope.goToPreview = function(){
+
+        window.open(baseUrl+"#!/page");
+
+    };
 });
+
+yearbookSignApp.controller('pageController', function ($scope, $http, $cookies, $state){
+
+    var email = $cookies.get("email");
+    var password = $cookies.get("password");
+
+    $http({
+        method: 'POST',
+        url: baseTomcatUrl+'messages/finished-messages',
+        data: {
+            "email": email,
+            "password": password
+        },
+    }).then(function successCallback(response) {
+        $scope.messages = response.data;
+
+
+        for(var i=0; i<$scope.messages.length;i++){
+
+            let ts = new Date($scope.messages[i].respondTime*1000);
+
+            $scope.messages[i].respondTime = ts.toLocaleString();
+        }
+
+
+    }, function errorCallback(response) {
+        // The next bit of code is asynchronously tricky.
+        alert("Error retrieving data, Please try again");
+        console.log(response)
+
+    });
+
+    $scope.logout = function () {
+
+        $cookies.remove("email");
+        $cookies.remove("password");
+
+        $state.go('login')
+
+    };
+});
+
 
 yearbookSignApp.controller('homeController', function ($scope, $http, $cookies, $state) {
 

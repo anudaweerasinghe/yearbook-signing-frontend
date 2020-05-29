@@ -36,9 +36,9 @@
 <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
         <!-- Brand -->
-        <div class="sidenav-header  align-items-center">
-            <a class="navbar-brand" href="javascript:void(0)">
-                <img src="assets/imgs/logo.jpeg" class="navbar-brand-img" alt="...">
+        <div class="sidenav-header  align-items-center" style="height: 180px" >
+            <a class="navbar-brand" href="javascript:void(0)" style="height: 180px" >
+                <img src="assets/imgs/logo.jpeg"  alt="..." >
             </a>
         </div>
         <div class="navbar-inner">
@@ -114,14 +114,19 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="col-lg-6 col-5 text-right">
-
-                    <div class="input-group input-group-alternative input-group-merge">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <div class="row col-lg-6 col-5 text-right">
+                        <div class="col-xl-4">
+                        <button type="button" class="btn btn-neutral" ng-click="goToPreview()" style="background: #EEF7E4">Print Preview
+                        </button>
                         </div>
-                        <input class="form-control" placeholder="Search Autographs" type="text" ng-model="search.responder.name">
-                    </div>
+                        <div class="col-xl-8">
+                        <div class="input-group input-group-alternative input-group-merge">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input class="form-control" placeholder="Search Autographs" type="text" ng-model="search.responder.name">
+                        </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Card stats -->
